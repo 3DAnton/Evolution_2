@@ -136,3 +136,46 @@ Gui::Gui( int x, int y) :
     mWindow(sf::VideoMode(x, y), "EvOlUtIoN")
 { };     ///  поле};
 Gui::~Gui() {};
+
+std::vector<Gui::EventType> Gui::get_events()
+{
+    std::vector<Gui::EventType> result;
+    sf::Event event;
+    while (mWindow.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            mWindow.close();
+        if (event.type == sf::Event::KeyReleased)
+        {
+            switch (event.key.code)
+            {
+                case sf::Keyboard::Key::Z :
+                {
+                    result.push_back(Gui::EventType::SWITCH_PAUSE);
+                    break;
+                }
+                case sf::Keyboard::Key::C :
+                {
+                    result.push_back(Gui::EventType::SWITCH_DRAW_MODE);
+                    break;
+                }
+                case sf::Keyboard::Key::Q :
+                {
+                    result.push_back(Gui::EventType::INCREASE_SPEED);
+                    break;
+                }
+                case sf::Keyboard::Key::W :
+                {
+                    result.push_back(Gui::EventType::DECREASE_SPEED);
+                    break;
+                }
+                case sf::Keyboard::Key::Space :
+                {
+                    result.push_back(Gui::EventType::STANDART_PAUSE);
+                    break;
+                }
+            }
+        }
+    }
+    return result;
+}

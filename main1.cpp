@@ -31,5 +31,5 @@ int main()
 	first_message(&w);
 
 	God g(&w);
-	g.run(&w);
+	g.run_2(&w);
 }

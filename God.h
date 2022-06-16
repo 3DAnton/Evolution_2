@@ -13,11 +13,11 @@ public:
 	~God();
 
 	
-	
+	void run_2(WorldSize*);
 	void run(WorldSize*);
 private:
-	Map q;
-	Gui y;
+	Map mWorld;
+	Gui mWindow;
 	WorldSize w;
 
 };

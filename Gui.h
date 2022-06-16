@@ -14,11 +14,11 @@ public:
 	enum EventType
 	{
 		NUN = 0,
-		SWITCH_DRAW_MODE = 1,
-		SWITCH_PAUSE = 2,
+		SWITCH_DRAW_MODE = 1,//c
+		SWITCH_PAUSE = 2,//z
 		INCREASE_SPEED = 3,
 		DECREASE_SPEED = 4,
-		STANDART_PAUSE = 5
+		STANDART_PAUSE = 5,
 	};
 	//Gui(sf::RenderWindow& aWindow);
 	Gui(int x, int y);
