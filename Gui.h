@@ -19,11 +19,13 @@ public:
 		INCREASE_SPEED = 3,
 		DECREASE_SPEED = 4,
 		STANDART_PAUSE = 5,
+		DRAW_GRAPH=6
 	};
 	//Gui(sf::RenderWindow& aWindow);
 	Gui(int x, int y);
 	~Gui();
 	std::vector<Gui::EventType> get_events();
+	void draw_graph();
 	void draw(std::vector<std::vector<Object::ObjectType>> result,WorldSize* w);
 private:
 	

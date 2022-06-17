@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "Event.h"
 #include "sas.hpp"
+#include <fstream>
 
 class God
 {
@@ -15,6 +16,8 @@ public:
 	
 	void run_2(WorldSize*);
 	void run(WorldSize*);
+	std::ofstream fout;
+
 private:
 	Map mWorld;
 	Gui mWindow;

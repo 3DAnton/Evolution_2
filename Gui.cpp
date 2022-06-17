@@ -174,8 +174,18 @@ std::vector<Gui::EventType> Gui::get_events()
                     result.push_back(Gui::EventType::STANDART_PAUSE);
                     break;
                 }
+                case sf::Keyboard::Key::G:
+                {
+                    result.push_back(Gui::EventType::DRAW_GRAPH);
+                    break;
+                }
             }
         }
     }
     return result;
+}
+
+void Gui::draw_graph()
+{
+    
 }

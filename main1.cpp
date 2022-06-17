@@ -23,6 +23,7 @@ void first_message(WorldSize* w)
 	std::cout << "How mauch bot to evolue?" << std::endl;
 	std::cin >> w->amount_boot_evolue;
 	std::cout << std::endl;
+
 }
 
 int main()
