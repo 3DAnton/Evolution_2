@@ -51,7 +51,7 @@ void God::run(WorldSize* w)
 void God::run_2(WorldSize* w)
 {
 	sf::VertexArray asd;
-	for (int cnt = 1, era = 0; ; ++cnt)
+	for (int cnt = 1, era = 0; ; )
 	{
 		if (w->need_to_zad)
 		{
@@ -109,7 +109,11 @@ void God::run_2(WorldSize* w)
 		}
 		if (w->mIsTurnedOff) continue;
 		
-		if(w->need_to_move) mWorld.makeTurn(w);
+		if(w->need_to_move) 
+		{
+			mWorld.makeTurn(w);
+			++cnt;
+		}
 		
 		if (mWorld.need_to_evolve(w))
 		{
