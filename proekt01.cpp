@@ -1,4 +1,4 @@
-#include "Gui.h";
+﻿#include "Gui.h";
 #include "Map.h";
 #include "God.h";
 #include "sas.hpp";
@@ -23,13 +23,15 @@ void first_message(WorldSize* w)
 	std::cout << "How mauch bot to evolue?" << std::endl;
 	std::cin >> w->amount_boot_evolue;
 	std::cout << std::endl;
-
 }
 
 int main()
 {
 	WorldSize w;
 	first_message(&w);
+	
+	//God g(&w);
+	//g.run(&w);
 
 	God g(&w);
 	g.run_2(&w);

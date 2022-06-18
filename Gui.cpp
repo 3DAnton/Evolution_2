@@ -3,6 +3,7 @@
 #include "Gui.h"
 
 
+
 #define FONT_PATH                   "Banty Bold.ttf"
 #define HEXAGON_DX                  0.f
 #define HEXAGON_DY                  50.f
@@ -28,77 +29,77 @@ void Gui::draw(std::vector<std::vector<Object::ObjectType>> result ,WorldSize* w
 
     sf::Event event;
 
-    while (mWindow.pollEvent(event))
-    {
-        if (event.type == sf::Event::MouseButtonPressed)
-        {
-            if (event.mouseButton.button == sf::Mouse::Right)
-            {
-                std::cout << " ASD ";
-            }
-        }
-        if (event.type == sf::Event::KeyReleased)
-        {
-            switch (event.key.code)
-            {
-                case (sf::Keyboard::Key::Z):
-                {
-                    bool q = w->make_a_pause;
-                    w->make_a_pause = !q;
-                    std::cout << "ASDASD" << std::endl;
-                    break;
-                }
-                case (sf::Keyboard::Key::C):
-                {
-                    bool q = w->need_to_draw;
-                    w->need_to_draw = !q;
-                    std::cout << "ASDASasD" << std::endl;
-                    break;
-                }
-                
-            }
-            if (event.type == sf::Event::Closed)
-                mWindow.close();
-            
-        }
-        //sf::Font font;//шрифт 
+    //while (mWindow.pollEvent(event))
+    //{
+    //    if (event.type == sf::Event::MouseButtonPressed)
+    //    {
+    //        if (event.mouseButton.button == sf::Mouse::Right)
+    //        {
+    //            std::cout << " ASD ";
+    //        }
+    //    }
+    //    if (event.type == sf::Event::KeyReleased)
+    //    {
+    //        switch (event.key.code)
+    //        {
+    //            case (sf::Keyboard::Key::Z):
+    //            {
+    //                bool q = w->make_a_pause;
+    //                w->make_a_pause = !q;
+    //                std::cout << "ASDASD" << std::endl;
+    //                break;
+    //            }
+    //            case (sf::Keyboard::Key::C):
+    //            {
+    //                bool q = w->need_to_draw;
+    //                w->need_to_draw = !q;
+    //                std::cout << "ASDASasD" << std::endl;
+    //                break;
+    //            }
+    //            
+    //        }
+    //        if (event.type == sf::Event::Closed)
+    //            mWindow.close();
+    //        
+    //    }
+    //    //sf::Font font;//шрифт 
 
-        //if (!font.loadFromFile("111.ttf"))
-        //{
-        //    std::cout << "Font load error!\n";
-        //}
+    //    //if (!font.loadFromFile("111.ttf"))
+    //    //{
+    //    //    std::cout << "Font load error!\n";
+    //    //}
 
-    }
+    //}
 
 
     sf::View view1;
     mWindow.clear();
 
-    for (int i = 0; i < result.size(); i++) {
-        for (int j = 0; j < result[0].size(); j++)
+    for (int i = 0; i < result.size()-(w->x_draw); i++) {
+        for (int j = 0; j < result[0].size()-(w->y_draw); j++)
         {
 
-                if (result[i][j] == Object::ObjectType::VOID)
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::VOID)
                     Crc1.setFillColor(sf::Color(120, 120, 120));    //  пусто + !!!!
 
 
-                if (result[i][j] == Object::ObjectType::BOT)         // бот    +
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::BOT)         // бот    +
                     Crc1.setFillColor(sf::Color(250, 250, 20));
 
 
-                if (result[i][j] == Object::ObjectType::FOOD)        // еда    +
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::FOOD)        // еда    +
                     Crc1.setFillColor(sf::Color(12, 180, 12));
 
 
-                if (result[i][j] == Object::ObjectType::POISON)     // яд     
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::POISON)     // яд     
                     Crc1.setFillColor(sf::Color(250, 0, 0));
 
 
-                if (result[i][j] == Object::ObjectType::WALL)        // стена
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::WALL)        // стена
                     Crc1.setFillColor(sf::Color(70, 70, 70));
 
 
-                if (result[i][j] == Object::ObjectType::NUN)         // 0
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::NUN)         // 0
                     Crc1.setFillColor(sf::Color(0, 0, 0));
 
 
@@ -129,10 +130,93 @@ void Gui::draw(std::vector<std::vector<Object::ObjectType>> result ,WorldSize* w
         }
         //  mWindow.draw(text);//рисую этот текст
         mWindow.display();
-};
+}
 
 //Gui::Gui(sf::RenderWindow& aWindow) :
 Gui::Gui( int x, int y) :
     mWindow(sf::VideoMode(x, y), "EvOlUtIoN")
-{ };     ///  поле};
-Gui::~Gui() {};
+{
+    
+};     ///  поле};
+Gui::~Gui() 
+{
+    fin.close();
+};
+
+std::vector<Gui::EventType> Gui::get_events()
+{
+    std::vector<Gui::EventType> result;
+    sf::Event event;
+    while (mWindow.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            mWindow.close();
+        if (event.type == sf::Event::KeyReleased)
+        {
+            switch (event.key.code)
+            {
+                case sf::Keyboard::Key::Z :
+                {
+                    result.push_back(Gui::EventType::SWITCH_PAUSE);
+                    break;
+                }
+                case sf::Keyboard::Key::C :
+                {
+                    result.push_back(Gui::EventType::SWITCH_DRAW_MODE);
+                    break;
+                }
+                case sf::Keyboard::Key::Q :
+                {
+                    result.push_back(Gui::EventType::INCREASE_SPEED);
+                    break;
+                }
+                case sf::Keyboard::Key::W :
+                {
+                    result.push_back(Gui::EventType::DECREASE_SPEED);
+                    break;
+                }
+                case sf::Keyboard::Key::Space :
+                {
+                    result.push_back(Gui::EventType::STANDART_PAUSE);
+                    break;
+                }
+                case sf::Keyboard::Key::G:
+                {
+                    result.push_back(Gui::EventType::DRAW_GRAPH);
+                    break;
+                }
+            }
+        }
+    }
+    return result;
+}
+
+sf::VertexArray Gui::zad()
+{
+    int n = 0, pr = 0;
+    std::vector<int> Vec;
+
+    fin.open("out.out");
+    while (fin >> n)
+    {
+        fin >> pr;
+        Vec.push_back(pr/10);
+    }
+    fin.close();
+
+    sf::VertexArray lines(sf::Lines, Vec.size());
+    lines[0].position = sf::Vector2f(0, 1080);
+
+    for (int i = 1; i < Vec.size(); ++i)
+    {
+        lines[i].position = sf::Vector2f(i, 1080 - Vec[i]);
+    }
+    return lines;
+};
+
+void Gui::draw_graph(sf::VertexArray asd)
+{
+    mWindow.clear();
+    mWindow.draw(asd);
+    mWindow.display();
+}
