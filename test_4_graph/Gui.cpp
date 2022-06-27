@@ -21,11 +21,11 @@ void Gui::draw(std::vector<std::vector<Object::ObjectType>> result ,WorldSize* w
 
     int x = 0, y = 0, k = 0;
 
-    Crc1.setRadius(20);                                 ///  радиус
-    Crc1.setPointCount(6);                              ///  граница
-    Crc1.setOutlineColor(sf::Color(70, 70, 70));        ///  цвет гр          /* поле */
-    Crc1.setOutlineThickness(3);                        ///  толщина границы 
-    Crc1.setFillColor(sf::Color(120, 120, 120));        ///  цвет внутри
+    Crc1.setRadius(20);                                 ///  Г°Г Г¤ГЁГіГ±
+    Crc1.setPointCount(6);                              ///  ГЈГ°Г Г­ГЁГ¶Г 
+    Crc1.setOutlineColor(sf::Color(70, 70, 70));        ///  Г¶ГўГҐГІ ГЈГ°          /* ГЇГ®Г«ГҐ */
+    Crc1.setOutlineThickness(3);                        ///  ГІГ®Г«Г№ГЁГ­Г  ГЈГ°Г Г­ГЁГ¶Г» 
+    Crc1.setFillColor(sf::Color(120, 120, 120));        ///  Г¶ГўГҐГІ ГўГ­ГіГІГ°ГЁ
 
     sf::Event event;
 
@@ -37,22 +37,22 @@ void Gui::draw(std::vector<std::vector<Object::ObjectType>> result ,WorldSize* w
         {
 
                 if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::VOID)
-                    Crc1.setFillColor(sf::Color(120, 120, 120));    //  пусто + !!!!
+                    Crc1.setFillColor(sf::Color(120, 120, 120));    //  ГЇГіГ±ГІГ® + !!!!
 
 
-                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::BOT)         // бот    +
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::BOT)         // ГЎГ®ГІ    +
                     Crc1.setFillColor(sf::Color(250, 250, 20));
 
 
-                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::FOOD)        // еда    +
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::FOOD)        // ГҐГ¤Г     +
                     Crc1.setFillColor(sf::Color(12, 180, 12));
 
 
-                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::POISON)     // яд     
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::POISON)     // ГїГ¤     
                     Crc1.setFillColor(sf::Color(250, 0, 0));
 
 
-                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::WALL)        // стена
+                if (result[i + (w->x_draw)][j + (w->y_draw)] == Object::ObjectType::WALL)        // Г±ГІГҐГ­Г 
                     Crc1.setFillColor(sf::Color(70, 70, 70));
 
 
@@ -71,10 +71,10 @@ void Gui::draw(std::vector<std::vector<Object::ObjectType>> result ,WorldSize* w
                 Crc1.setPosition(x, y);
                 mWindow.draw(Crc1);
  #ifdef SHOW_CELLS_COORDINATES
-                 sf::Text text("asdfjkashjkf", font, 20);             //создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пикселях);//сам объект текст (не строка)
-                 text.setStyle(sf::Text::Bold);                        //жирный и подчеркнутый текст. по умолчанию он "худой":)) и не подчеркнутый
+                 sf::Text text("asdfjkashjkf", font, 20);             //Г±Г®Г§Г¤Г ГҐГ¬ Г®ГЎГєГҐГЄГІ ГІГҐГЄГ±ГІ. Г§Г ГЄГЁГ¤Г»ГўГ ГҐГ¬ Гў Г®ГЎГєГҐГЄГІ ГІГҐГЄГ±ГІ Г±ГІГ°Г®ГЄГі, ГёГ°ГЁГґГІ, Г°Г Г§Г¬ГҐГ° ГёГ°ГЁГґГІГ (Гў ГЇГЁГЄГ±ГҐГ«ГїГµ);//Г±Г Г¬ Г®ГЎГєГҐГЄГІ ГІГҐГЄГ±ГІ (Г­ГҐ Г±ГІГ°Г®ГЄГ )
+                 text.setStyle(sf::Text::Bold);                        //Г¦ГЁГ°Г­Г»Г© ГЁ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГІГҐГЄГ±ГІ. ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ Г®Г­ "ГµГіГ¤Г®Г©":)) ГЁ Г­ГҐ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
                  text.setFillColor(sf::Color::White);
-                 text.setPosition(10, 10);                    //задаем позицию текста, центр камеры
+                 text.setPosition(10, 10);                    //Г§Г Г¤Г ГҐГ¬ ГЇГ®Г§ГЁГ¶ГЁГѕ ГІГҐГЄГ±ГІГ , Г¶ГҐГ­ГІГ° ГЄГ Г¬ГҐГ°Г»
 
                  text.setScale(sf::Vector2f(0.5, 0.5));
                  text.setPosition(x + 10, y + 10);
@@ -85,7 +85,7 @@ void Gui::draw(std::vector<std::vector<Object::ObjectType>> result ,WorldSize* w
             }
             y = (i+1) * 34;
         }
-        //  mWindow.draw(text);//рисую этот текст
+        //  mWindow.draw(text);//Г°ГЁГ±ГіГѕ ГЅГІГ®ГІ ГІГҐГЄГ±ГІ
         mWindow.display();
 }
 
@@ -93,7 +93,7 @@ void Gui::draw(std::vector<std::vector<Object::ObjectType>> result ,WorldSize* w
 //Gui::Gui(sf::RenderWindow& aWindow) :
 Gui::Gui( int x, int y) :
     mWindow(sf::VideoMode(x, y), "EvOlUtIoN")
-{                };     ///  поле};
+{                };     ///  ГЇГ®Г«ГҐ};
 
 Gui::~Gui() 
 {  fin.close();  };
@@ -173,33 +173,51 @@ sf::VertexArray Gui::graph()
         lines[i].position = sf::Vector2f(i, 1080 - Vec[i]);
         lines[i + 1].position = sf::Vector2f(i, 1080 - Vec[i]);
     }
-    lines[Vec.size()-1].position = sf::Vector2f(Vec.size(), 1080 - Vec[Vec.size()-1]);
-
-    
-    lines[Vec.size()].position = sf::Vector2f(0, 1080 - (Vec[0]+Vec[1])/2);
-    lines[Vec.size()].color = sf::Color::Yellow;                       ///
-                                                                    
-    for (int i = Vec.size()+1, j = 0; i < Vec.size() + Vec.size() / kf && j < Vec.size()-kf; i+=2, j++)
-    {
-        int md = 0;                                                               
-        for(; j%kf < kf-1; ++j)                     //  while (j % (kf + 1) < kf && j < Vec.size() - 1)
-       {
-           md += Vec[j];
-       }
-        
-       md /= j % kf;
      
-        lines[i].position = sf::Vector2f(j % 1920, 1080 - md);
-        lines[i].color = sf::Color::Red;
-        lines[i + 1].position = sf::Vector2f(j % 1920, 1080 - md);
-        lines[i + 1].color = sf::Color::Red;
-
+    if ((Vec.size()) % 2 == 0)
+    {
+        lines[Vec.size() - 1].position = sf::Vector2f(Vec.size(), 1080 - Vec[Vec.size() - 1]);
     }
-    lines[Vec.size() + Vec.size() / kf].position = sf::Vector2f(Vec.size(), 1080 - (Vec[Vec.size() - 1] + Vec[Vec.size() - 2]) / 2);
-    lines[Vec.size() + Vec.size() / kf].color = sf::Color::Blue;                ///
+    else
+    {
+        lines[Vec.size()].position = sf::Vector2f(Vec.size(), 1080 - Vec[Vec.size() - 1]);
+        i++;
+        k++;
+        
+    }                                                                                 ////////++++////////
+       
+   // lines[i].position = sf::Vector2f(0, 1080 - (Vec[0]+Vec[1])/2);
+   // lines[i].color = sf::Color::Red; 
+   // i++;
+   ///* for (int j = 0; i < Vec.size() + (Vec.size() / kf)*2 - k && j < Vec.size()-kf; i+=2, j++)
+   // {
+   //     int md = 0;                                                               
+   //     for(; j%kf < kf-1; ++j)                     
+   //    {
+   //        md += Vec[j];
+   //    }
+   //     
+   //    md /= j % kf;
+   //  
+   //     lines[i + k].position = sf::Vector2f(j % 1920, 1080 - md);
+   //     lines[i + k].color = sf::Color::Red;
+   //     lines[i + 1 + k].position = sf::Vector2f(j % 1920, 1080 - md);
+   //     lines[i + 1 + k].color = sf::Color::Red;
+
+   // }*/
+
+   ///* i++;
+   // lines[i+2].position = sf::Vector2f(Vec.size(), 1080 - (Vec[Vec.size() - 1] + Vec[Vec.size() - 2]) / 2);
+   // lines[i+2].color = sf::Color::Red;
+   // if ((Vec.size() + (Vec.size() / kf) * 2) % 2 == 1)
+   // {
+   //     lines[i + 1].position = sf::Vector2f(Vec.size(), 1080 - (Vec[Vec.size() - 1] + Vec[Vec.size() - 2]) / 2);
+   //     lines[i + 1].color = sf::Color::Red;
+   // }
+   // */
 
 
-    return lines;
+   return lines;
 };
 
 void Gui::draw_graph(sf::VertexArray asd)
